@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { API_URL, IMAGE_BASE_URL } from '../../Config';
+import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../Config";
 import MainImage from './Sections/MainImage';
-import env from "react-dotenv";
 import GridCards from '../commons/GridCards';
 import { Row } from 'antd';
 
@@ -12,7 +11,7 @@ function LandingPage() {
 	const [CurrentPage, setCurrentPage] = useState(0)
 
 	useEffect(() => {
-		const endpoint = `${API_URL}movie/popular?api_key=${env.API_KEY}&language=en-US&page=1`;
+		const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 		fetchMovies(endpoint)
 	}, []);
 
@@ -28,7 +27,7 @@ function LandingPage() {
 	};
 
 	const loadMoreItems = () => { //loadMore 버튼 함수
-		const endpoint = `${API_URL}movie/popular?api_key=${env.API_KEY}&language=en-US&page=${CurrentPage + 1}`;
+		const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
     fetchMovies(endpoint);
   };
 
