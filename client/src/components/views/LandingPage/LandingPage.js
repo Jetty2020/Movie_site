@@ -7,20 +7,30 @@ import { Row } from 'antd';
 
 
 function LandingPage() {
-	const [Movies, setMovies] = useState([])
-	const [MainMovieImage, setMainMovieImage] = useState(null)
+	const [Movies, setMovies] = useState([]);
+	const [MainMovieImage, setMainMovieImage] = useState(null);
+	const [CurrentPage, setCurrentPage] = useState(0)
 
 	useEffect(() => {
 		const endpoint = `${API_URL}movie/popular?api_key=${env.API_KEY}&language=en-US&page=1`;
-			
+		fetchMovies(endpoint)
+	}, []);
+
+	const fetchMovies = (endpoint) => {
 		fetch(endpoint)
 			.then(response => response.json())
 			.then(response => {
-				console.log(response.results)
-				setMovies([...response.results])
-				setMainMovieImage(response.results[0])
-			})
-	}, [])
+				console.log(response.results);
+				setMovies([...Movies, ...response.results]); //이전의 Movies data와 새로 로드한 data를 Movies에 담는 함수
+				setMainMovieImage(response.results[0]); //MainMovieImage 저장
+				setCurrentPage(response.page); //CurrentPage에 현재 페이지값 저장
+			});
+	};
+
+	const loadMoreItems = () => { //loadMore 버튼 함수
+		const endpoint = `${API_URL}movie/popular?api_key=${env.API_KEY}&language=en-US&page=${CurrentPage + 1}`;
+    fetchMovies(endpoint);
+  };
 
 	return (
 		<div style={{ width: '100%', margin: '0' }}>
@@ -51,7 +61,7 @@ function LandingPage() {
         </Row>
 			</div>
 			<div style={{ display: 'flex', justifyContent: 'center' }}>
-				<button> Load More</button>
+				<button onClick={loadMoreItems}> Load More</button>
 			</div>
 		</div>
 	)
