@@ -10,19 +10,16 @@ const AUTH = "/auth";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 
-// BOARDS with HOME
+// FAVORITES with favorites
+const FAVORITES = "/api/favorite";
+const FAVORITENUM = "/favoriteNumber";
+const FAVORITED = "/favorited";
+const REMOVEFAVORITE = "/removeFromFavorite";
+const ADDFAVORITE = "/addToFavorite";
 
-const HOME = "/";
-const BOARDS = "/boards";
-const LOAD_BOARD = "/load";
-const UPLOAD_BOARD = "/upload";
-const EDIT_BOARD = "/edit";
-const SEARCH_BOARD = "/search";
-const DETAIL_BOARD = "/detail";
-const DELETE_BOARD = "/delete";
+
 
 // API
-const API = "/api";
 
 
 const routes = {
@@ -39,18 +36,13 @@ const routes = {
   logout: LOGOUT,
   users: USERS,
 
-  // BOARDS with HOME
+  // FAVORITES with favorites
 
-  home: HOME,
-  boards: BOARDS,
-  loadBoard: LOAD_BOARD,
-  searchBoard: SEARCH_BOARD,
-  uploadBoard: UPLOAD_BOARD,
-  editBoard: EDIT_BOARD,
-  detailBoard: DETAIL_BOARD,
-  deleteBoard: DELETE_BOARD,
-
-  api: API,
+  favorites: FAVORITES,
+  favoriteNum: FAVORITENUM,
+  favorited: FAVORITED,
+  removeFavorite: REMOVEFAVORITE,
+  addFavorite: ADDFAVORITE,
 };
 
 export default routes;
